@@ -12,7 +12,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER 
-"imgui.h;imgui_internal.h;imstb_textedit.h"
+"imconfig.h;imgui.h;imgui_internal.h;imstb_textedit.h"
 )
 
 include(GNUInstallDirs)

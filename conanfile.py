@@ -23,13 +23,12 @@ class IMGUIConan(ConanFile):
         tc.presets_prefix = f"{self.settings.os}_{self.settings.build_type}_{self.settings.arch}"
         tc.generate()
 
+    def export_sources(self):
+        conan.tools.files.copy(self, "*", self.recipe_folder, self.export_sources_folder)
+
     def build(self):
         cmake = CMake(self)
         cmake.configure()
-        cmake.build()
-
-    def package(self):
-        cmake = CMake(self)
         cmake.build()
         cmake.install()
 
