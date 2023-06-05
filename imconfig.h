@@ -120,5 +120,3 @@ namespace ImGui
     void MyFunction(const char* name, const MyMatrix44& v);
 }
 */
-
-#define IMGUI_ENABLE_TEST_ENGINE
