@@ -10,9 +10,30 @@ target_sources(${PROJECT_NAME} PRIVATE
     imgui_tables.cpp
     imgui_widgets.cpp   
 )
+target_compile_definitions(${PROJECT_NAME} PUBLIC "-DIMGUI_USER_CONFIG=\"im_user_config.h\"")
+
+option(ENABLE_TESTING "Enable test engine." OFF)
+if (ENABLE_TESTING)
+    target_sources(${PROJECT_NAME} PRIVATE
+        imgui_test_engine/imgui_test_engine/imgui_capture_tool.cpp
+        imgui_test_engine/imgui_test_engine/imgui_te_context.cpp
+        imgui_test_engine/imgui_test_engine/imgui_te_coroutine.cpp
+        imgui_test_engine/imgui_test_engine/imgui_te_engine.cpp
+        imgui_test_engine/imgui_test_engine/imgui_te_exporters.cpp
+        imgui_test_engine/imgui_test_engine/imgui_te_perftool.cpp
+        imgui_test_engine/imgui_test_engine/imgui_te_ui.cpp
+        imgui_test_engine/imgui_test_engine/imgui_te_utils.cpp
+    )
+    set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER 
+        "imgui_test_engine/imgui_test_engine/imgui_te_engine.h"
+    )
+    target_compile_definitions(${PROJECT_NAME} PUBLIC -DENABLE_TESTING=1)
+    target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+    target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/imgui_test_engine/imgui_test_engine/)
+endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER 
-"imconfig.h;imgui.h;imgui_internal.h;imstb_textedit.h"
+"imconfig.h;imgui.h;imgui_internal.h;imstb_textedit.h;im_user_config.h"
 )
 
 include(GNUInstallDirs)
