@@ -9,14 +9,12 @@ class IMGUIConan(ConanFile):
     options = {
         "shared": [True, False],
         "fPIC": [True, False],
-        "enable_testing": [True, False],
-        "ImDrawIdx": ["unsigned int", "unsigned short"]
+        "enable_testing": [True, False]
     }
     default_options = {
         "shared": False,
         "fPIC": True,
-        "enable_testing": True,
-        "ImDrawIdx": "unsigned int"
+        "enable_testing": True
     }
 
     def generate(self):
