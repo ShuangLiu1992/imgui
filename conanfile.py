@@ -40,4 +40,7 @@ class IMGUIConan(ConanFile):
         self.cpp_info.set_property("cmake_file_name", "imgui")
         self.cpp_info.includedirs = ["include", "include/dear-imgui"]
         self.cpp_info.libs = conan.tools.files.collect_libs(self)
-        self.cpp_info.defines = ["IMGUI_USER_CONFIG=\"im_user_config.h\""]
+        self.cpp_info.defines = [
+            "IMGUI_USER_CONFIG=\"im_user_config.h\"",
+            f"ENABLE_TESTING={1 if self.options.enable_testing else 0}"
+        ]
