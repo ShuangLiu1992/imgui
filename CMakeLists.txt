@@ -12,7 +12,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 )
 target_compile_definitions(${PROJECT_NAME} PUBLIC "-DIMGUI_USER_CONFIG=\"im_user_config.h\"")
 
-option(ENABLE_TESTING "Enable test engine." OFF)
+option(IMGUI_ENABLE_TESTING "Enable test engine." OFF)
 set(public_headers 
     imconfig.h 
     imgui.h
@@ -20,7 +20,7 @@ set(public_headers
     imstb_textedit.h
     im_user_config.h
 )
-if (ENABLE_TESTING)
+if (IMGUI_ENABLE_TESTING)
     target_sources(${PROJECT_NAME} PRIVATE
         imgui_test_engine/imgui_test_engine/imgui_capture_tool.cpp
         imgui_test_engine/imgui_test_engine/imgui_te_context.cpp
@@ -43,7 +43,7 @@ if (ENABLE_TESTING)
         imgui_test_engine/imgui_test_engine/imgui_te_perftool.h
         imgui_test_engine/imgui_test_engine/imgui_te_utils.h
     )
-    target_compile_definitions(${PROJECT_NAME} PUBLIC -DENABLE_TESTING=1)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC -DIMGUI_ENABLE_TESTING=1)
     target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
     target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/imgui_test_engine/imgui_test_engine/)
 endif()
