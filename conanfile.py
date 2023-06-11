@@ -20,7 +20,7 @@ class IMGUIConan(ConanFile):
     def generate(self):
         tc = CMakeToolchain(self)
         tc.variables["CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS"] = 1
-        tc.variables["ENABLE_TESTING"] = self.options.enable_testing
+        tc.variables["IMGUI_ENABLE_TESTING"] = self.options.enable_testing
         tc.presets_prefix = f"{self.settings.os}_{self.settings.build_type}_{self.settings.arch}"
         if self.settings.os == "Emscripten" and self.options.enable_testing:
             tc.preprocessor_definitions["_X86_"] = 1
@@ -42,5 +42,5 @@ class IMGUIConan(ConanFile):
         self.cpp_info.libs = conan.tools.files.collect_libs(self)
         self.cpp_info.defines = [
             "IMGUI_USER_CONFIG=\"im_user_config.h\"",
-            f"ENABLE_TESTING={1 if self.options.enable_testing else 0}"
+            f"IMGUI_ENABLE_TESTING={1 if self.options.enable_testing else 0}"
         ]
